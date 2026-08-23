@@ -84,7 +84,9 @@ const styles = `
   section { margin-top: 44px; }
 
   .app-card {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     margin-top: 24px;
     padding: 18px;
     border: 1px solid #e4e4e7;
@@ -92,6 +94,22 @@ const styles = `
     background: #fafafa;
     color: inherit;
     text-decoration: none;
+  }
+
+  .app-icon {
+    display: grid;
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 9px;
+    background: #34c759;
+    color: #ffffff;
+  }
+
+  .app-icon svg {
+    width: 23px;
+    height: 23px;
   }
 
   .news-list {
@@ -126,7 +144,16 @@ const styles = `
     line-height: 1.5;
   }
 
-  .app-card span {
+  .app-card small {
+    display: block;
+    margin-top: 2px;
+    color: #71717a;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .app-card .app-copy span {
     display: block;
     margin-top: 4px;
     color: #71717a;
@@ -170,15 +197,23 @@ export const landingPage = page({
   title: 'Tinyhead - App pages',
   description: 'Tinyhead hosts simple pages for small apps and side projects.',
   body: `<main>
-      <h1>Tinyhead is my personal app hub.</h1>
+      <h1>Tiny personal project desk.</h1>
       <p>
         A quiet place for app landing pages, privacy policies, terms, and the
         small details that need a stable home.
       </p>
 
       <a class="app-card" href="/mybox">
-        <strong>Mybox</strong>
-        <span>A local-first iOS app for keeping your own boxes of notes, logs, and small records on device.</span>
+        <span class="app-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+          </svg>
+        </span>
+        <span class="app-copy">
+          <strong>Mybox</strong>
+          <small>Local iOS app</small>
+          <span>A private place for notes, logs, and small records that stay on your device.</span>
+        </span>
       </a>
 
       <section>
@@ -307,8 +342,7 @@ export const myboxPrivacyPage = page({
       <section>
         <h2>Contact</h2>
         <p>
-          For privacy questions about Mybox, contact the developer through the App
-          Store listing or the support contact provided with the app.
+          For privacy questions about Mybox, contact <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
         </p>
       </section>
     </main>
@@ -401,8 +435,7 @@ export const myboxTermsPage = page({
       <section>
         <h2>9. Contact</h2>
         <p>
-          For questions about these terms, contact the developer through the App
-          Store listing or the support contact provided with the app.
+          For questions about these terms, contact <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
         </p>
       </section>
     </main>
