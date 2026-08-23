@@ -1,0 +1,21 @@
+{
+  "name": "tinyhead-landing",
+  "version": "1.0.0",
+  "description": "A minimal personal landing page for side projects",
+  "license": "ISC",
+  "author": "Raj Tripathi",
+  "type": "module",
+  "main": "serve-landing.js",
+  "scripts": {
+    "dev": "nodemon serve-landing.js",
+    "start": "node serve-landing.js"
+  },
+  "repository": "https://github.com/xrazz",
+  "keywords": ["landing-page", "personal-site", "side-projects"],
+  "dependencies": {
+    "fastify": "^5.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
