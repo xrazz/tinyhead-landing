@@ -197,12 +197,6 @@ export const myboxPage = page({
         logs, and small records. It is built to keep your data on your device.
       </p>
 
-      <nav aria-label="Mybox pages">
-        <a href="/">Tinyhead</a>
-        <a href="/mybox/privacy">Privacy Policy</a>
-        <a href="/mybox/terms">Terms</a>
-      </nav>
-
       <section>
         <h2>Local by default</h2>
         <p>
@@ -211,17 +205,12 @@ export const myboxPage = page({
         </p>
       </section>
 
-      <section>
-        <h2>App Store links</h2>
-        <p>
-          Use the privacy and terms pages below for App Store review and in-app
-          legal links.
-        </p>
-        <div class="links">
-          <a href="/mybox/privacy">Privacy Policy</a>
-          <a href="/mybox/terms">Terms and Conditions</a>
-        </div>
-      </section>
+      <nav aria-label="Mybox pages">
+        <a href="/">Home</a>
+        <a href="/mybox/privacy">Privacy Policy</a>
+        <a href="/mybox/terms">Terms</a>
+        <a href="/mybox/contact">Contact</a>
+      </nav>
     </main>
     <footer>
       Mybox by Tinyhead
@@ -397,6 +386,28 @@ export const myboxTermsPage = page({
     </main>
     <footer>
       <a href="/mybox">Back to Mybox</a>
+    </footer>`,
+});
+
+export const myboxContactPage = page({
+  title: 'Mybox Contact - Tinyhead',
+  description: 'Contact information for Mybox.',
+  body: `<main>
+      <h1>Mybox Contact</h1>
+      <p>
+        For support, privacy questions, terms questions, or App Store review
+        contact needs, email <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
+      </p>
+
+      <nav aria-label="Mybox pages">
+        <a href="/">Home</a>
+        <a href="/mybox">Mybox</a>
+        <a href="/mybox/privacy">Privacy Policy</a>
+        <a href="/mybox/terms">Terms</a>
+      </nav>
+    </main>
+    <footer>
+      Mybox by Tinyhead
     </footer>`,
 });
 

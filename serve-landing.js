@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import landingPage, {
+  myboxContactPage,
   myboxPage,
   myboxPrivacyPage,
   myboxTermsPage,
@@ -34,6 +35,14 @@ fastify.get('/mybox/terms', async (_request, reply) => {
 
 fastify.get('/mybox/terms/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(myboxTermsPage);
+});
+
+fastify.get('/mybox/contact', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxContactPage);
+});
+
+fastify.get('/mybox/contact/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxContactPage);
 });
 
 fastify.setNotFoundHandler(async (_request, reply) => {
