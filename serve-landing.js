@@ -1,6 +1,7 @@
 import { createReadStream } from 'node:fs';
 import Fastify from 'fastify';
 import landingPage, {
+  contactPage,
   myboxContactPage,
   myboxPage,
   myboxPrivacyPage,
@@ -13,6 +14,14 @@ const myboxLogoPath = new URL('./public/assets/mybox-logo.webp', import.meta.url
 
 fastify.get('/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(landingPage);
+});
+
+fastify.get('/contact', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(contactPage);
+});
+
+fastify.get('/contact/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(contactPage);
 });
 
 fastify.get('/assets/mybox-logo.webp', async (_request, reply) => {

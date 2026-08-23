@@ -182,7 +182,7 @@ const tinyheadFooter = `<footer>
       <nav aria-label="Tinyhead pages">
         <a href="/">Home</a>
         <a href="/mybox">Project</a>
-        <a href="/mybox/contact">Contact</a>
+        <a href="/contact">Contact</a>
       </nav>
     </footer>`;
 
@@ -205,6 +205,24 @@ export const landingPage = page({
       </a>
     </main>
     ${tinyheadFooter}`,
+});
+
+export const contactPage = page({
+  title: 'Contact - Tinyhead',
+  description: 'Contact Tinyhead.',
+  body: `<main>
+      <h1>Contact Tinyhead</h1>
+      <p>
+        For Tinyhead, app page, or project questions, email
+        <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
+      </p>
+    </main>
+    <footer>
+      <nav aria-label="Tinyhead pages">
+        <a href="/">Home</a>
+        <a href="/mybox">Project</a>
+      </nav>
+    </footer>`,
 });
 
 export const myboxPage = page({
