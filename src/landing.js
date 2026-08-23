@@ -170,7 +170,7 @@ export const landingPage = page({
   title: 'Tinyhead - App pages',
   description: 'Tinyhead hosts simple pages for small apps and side projects.',
   body: `<main>
-      <h1>Tinyhead is a simple page manager for small apps.</h1>
+      <h1>Tinyhead is my personal app hub.</h1>
       <p>
         A quiet place for app landing pages, privacy policies, terms, and the
         small details that need a stable home.
