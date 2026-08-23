@@ -1,292 +1,380 @@
-const landingPage = `<!doctype html>
+const styles = `
+  :root {
+    color-scheme: light;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #18181b;
+    background: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  main,
+  footer {
+    width: min(calc(100% - 40px), 620px);
+    margin-inline: auto;
+  }
+
+  main { padding-block: 80px 64px; }
+
+  footer {
+    padding-block: 28px 48px;
+    border-top: 1px solid #f4f4f5;
+    color: #71717a;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-decoration-color: #d4d4d8;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  p,
+  li {
+    color: #52525b;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  p { margin: 14px 0 0; }
+
+  ul {
+    margin: 14px 0 0;
+    padding-left: 20px;
+  }
+
+  nav,
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  a {
+    color: #2563eb;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover { opacity: 0.76; }
+
+  section { margin-top: 44px; }
+
+  .app-card {
+    display: block;
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid #e4e4e7;
+    border-radius: 6px;
+    background: #fafafa;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .app-card strong {
+    display: block;
+    color: #18181b;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .app-card span {
+    display: block;
+    margin-top: 4px;
+    color: #71717a;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .meta {
+    color: #71717a;
+    font-size: 13px;
+  }
+
+  @media (max-width: 520px) {
+    main,
+    footer {
+      width: min(calc(100% - 32px), 620px);
+    }
+
+    main { padding-block: 56px 48px; }
+  }
+`;
+
+function page({ title, description, body }) {
+  return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Tinyhead is a personal space for side projects." />
-    <title>Tinyhead - Side projects</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: #18181b;
-        background: #ffffff;
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-      }
-
-      main {
-        width: min(calc(100% - 40px), 620px);
-        margin-inline: auto;
-        padding-block: 80px;
-      }
-
-      h1 {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      p {
-        margin: 14px 0 0;
-        color: #52525b;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.6;
-      }
-
-      nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 24px;
-      }
-
-      a {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        color: #2563eb;
-        font-size: 15px;
-        font-weight: 500;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
-
-      a:hover { opacity: 0.76; }
-
-      a svg {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-      }
-
-      section {
-        margin-top: 44px;
-      }
-
-      .flow-section {
-        padding: 20px;
-        border: 1px solid #e4e4e7;
-        border-radius: 2px;
-      }
-
-      h2 {
-        margin: 0 0 20px;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.5;
-        text-decoration: underline;
-        text-decoration-color: #d4d4d8;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 4px;
-      }
-
-      .flow {
-        display: grid;
-        justify-items: center;
-        margin-top: 4px;
-      }
-
-      .flow-node {
-        width: min(100%, 360px);
-        padding: 14px 18px;
-        border: 1px solid #e4e4e7;
-        border-radius: 6px;
-        background: #fafafa;
-        text-align: center;
-      }
-
-      .flow-node strong,
-      .flow-folder strong {
-        display: block;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.5;
-      }
-
-      .flow-node span {
-        display: block;
-        margin-top: 2px;
-        color: #71717a;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.5;
-      }
-
-      .flow-node.tinyhead {
-        border-color: #bfdbfe;
-        background: #eff6ff;
-      }
-
-      .flow-link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 68px;
-        color: #71717a;
-        font-size: 13px;
-        font-weight: 500;
-        line-height: 1.5;
-        text-align: center;
-      }
-
-      .flow-link span {
-        position: relative;
-        z-index: 1;
-        padding: 3px 9px;
-        background: #ffffff;
-      }
-
-      .flow-link::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 1px;
-        height: calc(100% - 10px);
-        background: #a1a1aa;
-      }
-
-      .flow-link::after {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        left: calc(50% - 4px);
-        width: 8px;
-        height: 8px;
-        border-right: 1px solid #a1a1aa;
-        border-bottom: 1px solid #a1a1aa;
-        transform: rotate(45deg);
-      }
-
-      .flow-folders {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        width: 100%;
-      }
-
-      .flow-folder {
-        min-width: 0;
-        padding: 12px 8px;
-        border: 1px solid #e4e4e7;
-        border-radius: 6px;
-        background: #ffffff;
-        text-align: center;
-      }
-
-      .flow-note {
-        width: min(100%, 500px);
-        margin-top: 16px;
-        text-align: center;
-      }
-
-      @media (max-width: 520px) {
-        main {
-          width: min(calc(100% - 32px), 620px);
-          padding-block: 56px;
-        }
-
-        .flow-folders {
-          grid-template-columns: 1fr;
-        }
-
-        .flow-section {
-          padding: 16px;
-        }
-      }
-    </style>
+    <meta name="description" content="${description}" />
+    <title>${title}</title>
+    <style>${styles}</style>
   </head>
   <body>
-    <main>
-      <h1>Tinyhead is a personal space for side projects.</h1>
+    ${body}
+  </body>
+</html>`;
+}
+
+export const landingPage = page({
+  title: 'Tinyhead - App pages',
+  description: 'Tinyhead hosts simple pages for small apps and side projects.',
+  body: `<main>
+      <h1>Tinyhead is a simple page manager for small apps.</h1>
       <p>
-        A small home for experiments, tools, notes, releases, and unfinished ideas
-        that are still worth keeping close.
+        A quiet place for app landing pages, privacy policies, terms, and the
+        small details that need a stable home.
       </p>
-      <nav aria-label="Tinyhead links">
-        <a href="https://github.com/xrazz">
-          <svg viewBox="0 0 24 24"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.47.11-3.05 0 0 .96-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z" /></svg>
-          View GitHub
-        </a>
+
+      <a class="app-card" href="/mybox">
+        <strong>Mybox</strong>
+        <span>A local-first iOS app for keeping your own boxes of notes, logs, and small records on device.</span>
+      </a>
+    </main>
+    <footer>
+      Tinyhead
+    </footer>`,
+});
+
+export const myboxPage = page({
+  title: 'Mybox - Tinyhead',
+  description: 'Mybox is a local-first iOS app for personal notes, logs, and small records.',
+  body: `<main>
+      <h1>Mybox</h1>
+      <p>
+        Mybox is a small local-first iOS app for keeping personal boxes of notes,
+        logs, and small records. It is built to keep your data on your device.
+      </p>
+
+      <nav aria-label="Mybox pages">
+        <a href="/">Tinyhead</a>
+        <a href="/mybox/privacy">Privacy Policy</a>
+        <a href="/mybox/terms">Terms</a>
       </nav>
 
       <section>
-        <h2>How it works</h2>
-        <div class="flow flow-section" role="img" aria-label="Tinyhead collects side projects, tools, writing, and experiments in one personal space.">
-          <div class="flow-node">
-            <strong>Ideas</strong>
-            <span>Side projects, notes, and experiments</span>
-          </div>
-          <div class="flow-link"><span>Build, write, ship</span></div>
-          <div class="flow-node tinyhead">
-            <strong>Tinyhead</strong>
-            <span>A simple personal shelf for work in progress</span>
-          </div>
-          <div class="flow-link" aria-hidden="true"></div>
-          <div class="flow-folders">
-            <div class="flow-folder"><strong>Projects</strong></div>
-            <div class="flow-folder"><strong>Tools</strong></div>
-            <div class="flow-folder"><strong>Notes</strong></div>
-          </div>
-          <p class="flow-note">
-            Small things get a place before they become polished things.
-          </p>
+        <h2>Local by default</h2>
+        <p>
+          Mybox does not run an account system and does not store your app content
+          on a Tinyhead server. Your boxes and entries live locally on your device.
+        </p>
+      </section>
+
+      <section>
+        <h2>App Store links</h2>
+        <p>
+          Use the privacy and terms pages below for App Store review and in-app
+          legal links.
+        </p>
+        <div class="links">
+          <a href="/mybox/privacy">Privacy Policy</a>
+          <a href="/mybox/terms">Terms and Conditions</a>
         </div>
       </section>
+    </main>
+    <footer>
+      Mybox by Tinyhead
+    </footer>`,
+});
+
+export const myboxPrivacyPage = page({
+  title: 'Mybox Privacy Policy - Tinyhead',
+  description: 'Privacy policy for Mybox, a local-first iOS app.',
+  body: `<main>
+      <h1>Mybox Privacy Policy</h1>
+      <p class="meta">Last updated: August 23, 2026</p>
+
+      <nav aria-label="Mybox pages">
+        <a href="/mybox">Mybox</a>
+        <a href="/mybox/terms">Terms</a>
+      </nav>
 
       <section>
-        <h2>Keep work visible</h2>
+        <h2>Overview</h2>
         <p>
-          Tinyhead keeps side projects from disappearing into random folders. It is
-          a calm place to collect what is being built, explored, and released.
+          Mybox is designed as a local-first app. The content you create in the app
+          is stored on your device and is not stored on Tinyhead servers.
         </p>
       </section>
 
       <section>
-        <h2>Built in public</h2>
+        <h2>Data stored locally</h2>
         <p>
-          The focus is small useful software, experiments, and the kind of project
-          notes that make future work easier to restart.
+          Mybox may store your boxes, notes, logs, settings, and related app data
+          locally on your device. This data remains under your control through the
+          app and iOS device storage.
         </p>
       </section>
 
       <section>
-        <h2>Personal, not precious</h2>
+        <h2>Server storage</h2>
         <p>
-          It does not need to be a company page. It can just be a clean personal
-          space for side projects, prototypes, and useful little releases.
+          Tinyhead does not operate a server database for Mybox app content. Mybox
+          does not require an account and does not upload your boxes or entries to
+          Tinyhead.
         </p>
       </section>
 
       <section>
-        <h2>What belongs here</h2>
+        <h2>Logs and diagnostics</h2>
         <p>
-          Tools, repos, demos, build notes, experiments, and tiny launches that
-          deserve a simple home.
+          Mybox may generate local app logs needed for troubleshooting or normal app
+          operation. If iOS or the App Store provides crash reports or diagnostic
+          information to the developer, those reports may be used to fix bugs and
+          improve reliability. These diagnostics are not used for advertising.
         </p>
       </section>
 
       <section>
-        <h2>What it runs on</h2>
+        <h2>Third parties</h2>
         <p>
-          This page is intentionally minimal: one JavaScript file returns a plain
-          HTML document with inline CSS.
+          Mybox does not sell personal data and does not use third-party advertising
+          trackers. If the app is downloaded through the App Store, Apple may process
+          purchase, download, crash, or device information under Apple&apos;s own
+          policies.
+        </p>
+      </section>
+
+      <section>
+        <h2>Deleting data</h2>
+        <p>
+          You can remove Mybox data by deleting content inside the app, if available,
+          or by deleting the app from your device. iOS may also provide storage and
+          backup controls that affect local app data.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          For privacy questions about Mybox, contact the developer through the App
+          Store listing or the support contact provided with the app.
         </p>
       </section>
     </main>
-  </body>
-</html>`;
+    <footer>
+      <a href="/mybox">Back to Mybox</a>
+    </footer>`,
+});
+
+export const myboxTermsPage = page({
+  title: 'Mybox Terms and Conditions - Tinyhead',
+  description: 'Terms and conditions for Mybox.',
+  body: `<main>
+      <h1>Mybox Terms and Conditions</h1>
+      <p class="meta">Last updated: August 23, 2026</p>
+
+      <nav aria-label="Mybox pages">
+        <a href="/mybox">Mybox</a>
+        <a href="/mybox/privacy">Privacy Policy</a>
+      </nav>
+
+      <section>
+        <h2>1. Acceptance</h2>
+        <p>
+          By downloading or using Mybox, you agree to these terms. If you do not
+          agree, do not use the app.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. What Mybox does</h2>
+        <p>
+          Mybox is a local-first iOS app for organizing personal notes, logs, and
+          small records into boxes. The app is provided for personal organization
+          and productivity.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Your content</h2>
+        <p>
+          You are responsible for the content you create, save, import, or manage in
+          Mybox. Please do not use the app to store content that you do not have the
+          right to use.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Local data and backups</h2>
+        <p>
+          Mybox stores app content locally on your device. You are responsible for
+          managing your device, backups, exports, and deletion of local data.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. App Store and purchases</h2>
+        <p>
+          If Mybox offers paid downloads, in-app purchases, or subscriptions, those
+          purchases are handled by Apple through the App Store. Apple&apos;s terms and
+          your Apple account settings apply to billing, cancellation, and refunds.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. No warranty</h2>
+        <p>
+          Mybox is provided as is. We try to keep it useful and reliable, but we do
+          not guarantee that it will be uninterrupted, error-free, or suitable for
+          every purpose.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Limitation of liability</h2>
+        <p>
+          To the fullest extent permitted by law, Tinyhead and the Mybox developer
+          are not liable for indirect, incidental, special, consequential, or
+          punitive damages arising from your use of the app.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Changes</h2>
+        <p>
+          These terms may be updated from time to time. Continued use of Mybox after
+          an update means you accept the updated terms.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Contact</h2>
+        <p>
+          For questions about these terms, contact the developer through the App
+          Store listing or the support contact provided with the app.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <a href="/mybox">Back to Mybox</a>
+    </footer>`,
+});
 
 export default landingPage;

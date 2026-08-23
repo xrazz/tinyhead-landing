@@ -1,11 +1,43 @@
 import Fastify from 'fastify';
-import landingPage from './src/landing.js';
+import landingPage, {
+  myboxPage,
+  myboxPrivacyPage,
+  myboxTermsPage,
+} from './src/landing.js';
 
 const fastify = Fastify({ logger: false });
 const port = Number(process.env.PORT || 3000);
 
 fastify.get('/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(landingPage);
+});
+
+fastify.get('/mybox', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxPage);
+});
+
+fastify.get('/mybox/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxPage);
+});
+
+fastify.get('/mybox/privacy', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxPrivacyPage);
+});
+
+fastify.get('/mybox/privacy/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxPrivacyPage);
+});
+
+fastify.get('/mybox/terms', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxTermsPage);
+});
+
+fastify.get('/mybox/terms/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(myboxTermsPage);
+});
+
+fastify.setNotFoundHandler(async (_request, reply) => {
+  return reply.code(404).type('text/html; charset=utf-8').send(landingPage);
 });
 
 try {
