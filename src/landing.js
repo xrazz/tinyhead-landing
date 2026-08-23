@@ -9,6 +9,8 @@ const styles = `
   * { box-sizing: border-box; }
 
   body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     min-height: 100vh;
   }
@@ -19,7 +21,10 @@ const styles = `
     margin-inline: auto;
   }
 
-  main { padding-block: 80px 64px; }
+  main {
+    flex: 1;
+    padding-block: 80px 64px;
+  }
 
   footer {
     padding-block: 28px 48px;
@@ -164,6 +169,14 @@ const myboxFooter = `<footer>
       </nav>
     </footer>`;
 
+const tinyheadFooter = `<footer>
+      <nav aria-label="Tinyhead pages">
+        <a href="/">Home</a>
+        <a href="/mybox">Project</a>
+        <a href="/mybox/contact">Contact</a>
+      </nav>
+    </footer>`;
+
 export const landingPage = page({
   title: 'Tinyhead - App pages',
   description: 'Tinyhead hosts simple pages for small apps and side projects.',
@@ -182,9 +195,7 @@ export const landingPage = page({
         </span>
       </a>
     </main>
-    <footer>
-      Tinyhead
-    </footer>`,
+    ${tinyheadFooter}`,
 });
 
 export const myboxPage = page({
