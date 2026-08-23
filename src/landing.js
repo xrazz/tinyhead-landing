@@ -29,6 +29,8 @@ const styles = `
     font-weight: 500;
   }
 
+  footer nav { margin-top: 0; }
+
   h1 {
     margin: 0;
     font-size: 24px;
@@ -152,6 +154,16 @@ function page({ title, description, body }) {
 </html>`;
 }
 
+const myboxFooter = `<footer>
+      <nav aria-label="Mybox pages">
+        <a href="/">Home</a>
+        <a href="/mybox">Mybox</a>
+        <a href="/mybox/privacy">Privacy Policy</a>
+        <a href="/mybox/terms">Terms</a>
+        <a href="/mybox/contact">Contact</a>
+      </nav>
+    </footer>`;
+
 export const landingPage = page({
   title: 'Tinyhead - App pages',
   description: 'Tinyhead hosts simple pages for small apps and side projects.',
@@ -193,16 +205,8 @@ export const myboxPage = page({
         </p>
       </section>
 
-      <nav aria-label="Mybox pages">
-        <a href="/">Home</a>
-        <a href="/mybox/privacy">Privacy Policy</a>
-        <a href="/mybox/terms">Terms</a>
-        <a href="/mybox/contact">Contact</a>
-      </nav>
     </main>
-    <footer>
-      Mybox by Tinyhead
-    </footer>`,
+    ${myboxFooter}`,
 });
 
 export const myboxPrivacyPage = page({
@@ -210,12 +214,7 @@ export const myboxPrivacyPage = page({
   description: 'Privacy policy for Mybox, a local-first iOS app.',
   body: `<main>
       <h1>Mybox Privacy Policy</h1>
-      <p class="meta">Last updated: August 23, 2026</p>
-
-      <nav aria-label="Mybox pages">
-        <a href="/mybox">Mybox</a>
-        <a href="/mybox/terms">Terms</a>
-      </nav>
+      <p class="meta">Last updated: August 24, 2026</p>
 
       <section>
         <h2>Overview</h2>
@@ -247,9 +246,19 @@ export const myboxPrivacyPage = page({
         <h2>Logs and diagnostics</h2>
         <p>
           Mybox may generate local app logs needed for troubleshooting or normal app
-          operation. If iOS or the App Store provides crash reports or diagnostic
-          information to the developer, those reports may be used to fix bugs and
-          improve reliability. These diagnostics are not used for advertising.
+          operation. If Apple provides crash reports or diagnostic information
+          through your iOS or App Store settings, those reports may be used to fix
+          bugs and improve reliability. These diagnostics are not used for
+          advertising.
+        </p>
+      </section>
+
+      <section>
+        <h2>Device backups</h2>
+        <p>
+          Because Mybox stores data locally, your app data may be included in
+          device backups, iCloud backups, or transfers depending on your iOS
+          settings. Tinyhead does not control Apple&apos;s backup systems.
         </p>
       </section>
 
@@ -278,10 +287,17 @@ export const myboxPrivacyPage = page({
           For privacy questions about Mybox, contact <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
         </p>
       </section>
+
+      <section>
+        <h2>Contact emails</h2>
+        <p>
+          If you contact Tinyhead by email, we may receive your email address and
+          the contents of your message. We use this information only to respond to
+          you and support Mybox.
+        </p>
+      </section>
     </main>
-    <footer>
-      <a href="/mybox">Back to Mybox</a>
-    </footer>`,
+    ${myboxFooter}`,
 });
 
 export const myboxTermsPage = page({
@@ -289,12 +305,7 @@ export const myboxTermsPage = page({
   description: 'Terms and conditions for Mybox.',
   body: `<main>
       <h1>Mybox Terms and Conditions</h1>
-      <p class="meta">Last updated: August 23, 2026</p>
-
-      <nav aria-label="Mybox pages">
-        <a href="/mybox">Mybox</a>
-        <a href="/mybox/privacy">Privacy Policy</a>
-      </nav>
+      <p class="meta">Last updated: August 24, 2026</p>
 
       <section>
         <h2>1. Acceptance</h2>
@@ -340,7 +351,24 @@ export const myboxTermsPage = page({
       </section>
 
       <section>
-        <h2>6. No warranty</h2>
+        <h2>6. Apple terms</h2>
+        <p>
+          Your use of Mybox may also be subject to Apple&apos;s App Store terms and
+          the Apple standard licensed application end user license agreement,
+          unless a separate custom EULA applies.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Privacy Policy</h2>
+        <p>
+          The <a href="https://tinyhead.space/mybox/privacy">Mybox Privacy Policy</a>
+          explains how privacy and local app data are handled.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. No warranty</h2>
         <p>
           Mybox is provided as is. We try to keep it useful and reliable, but we do
           not guarantee that it will be uninterrupted, error-free, or suitable for
@@ -349,7 +377,7 @@ export const myboxTermsPage = page({
       </section>
 
       <section>
-        <h2>7. Limitation of liability</h2>
+        <h2>9. Limitation of liability</h2>
         <p>
           To the fullest extent permitted by law, Tinyhead and the Mybox developer
           are not liable for indirect, incidental, special, consequential, or
@@ -358,7 +386,7 @@ export const myboxTermsPage = page({
       </section>
 
       <section>
-        <h2>8. Changes</h2>
+        <h2>10. Changes</h2>
         <p>
           These terms may be updated from time to time. Continued use of Mybox after
           an update means you accept the updated terms.
@@ -366,15 +394,13 @@ export const myboxTermsPage = page({
       </section>
 
       <section>
-        <h2>9. Contact</h2>
+        <h2>11. Contact</h2>
         <p>
           For questions about these terms, contact <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
         </p>
       </section>
     </main>
-    <footer>
-      <a href="/mybox">Back to Mybox</a>
-    </footer>`,
+    ${myboxFooter}`,
 });
 
 export const myboxContactPage = page({
@@ -387,16 +413,8 @@ export const myboxContactPage = page({
         contact needs, email <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
       </p>
 
-      <nav aria-label="Mybox pages">
-        <a href="/">Home</a>
-        <a href="/mybox">Mybox</a>
-        <a href="/mybox/privacy">Privacy Policy</a>
-        <a href="/mybox/terms">Terms</a>
-      </nav>
     </main>
-    <footer>
-      Mybox by Tinyhead
-    </footer>`,
+    ${myboxFooter}`,
 });
 
 export default landingPage;
