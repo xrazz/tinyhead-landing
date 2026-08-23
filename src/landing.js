@@ -159,15 +159,24 @@ function page({ title, description, body }) {
 </html>`;
 }
 
-const myboxFooter = `<footer>
+function myboxFooter(currentPath) {
+  const links = [
+    ['/', 'Home'],
+    ['/mybox', 'Mybox'],
+    ['/mybox/privacy', 'Privacy Policy'],
+    ['/mybox/terms', 'Terms'],
+    ['/mybox/contact', 'Contact'],
+  ]
+    .filter(([href]) => href !== currentPath)
+    .map(([href, label]) => `<a href="${href}">${label}</a>`)
+    .join('\n        ');
+
+  return `<footer>
       <nav aria-label="Mybox pages">
-        <a href="/">Home</a>
-        <a href="/mybox">Mybox</a>
-        <a href="/mybox/privacy">Privacy Policy</a>
-        <a href="/mybox/terms">Terms</a>
-        <a href="/mybox/contact">Contact</a>
+        ${links}
       </nav>
     </footer>`;
+}
 
 const tinyheadFooter = `<footer>
       <nav aria-label="Tinyhead pages">
@@ -217,7 +226,7 @@ export const myboxPage = page({
       </section>
 
     </main>
-    ${myboxFooter}`,
+    ${myboxFooter('/mybox')}`,
 });
 
 export const myboxPrivacyPage = page({
@@ -308,7 +317,7 @@ export const myboxPrivacyPage = page({
         </p>
       </section>
     </main>
-    ${myboxFooter}`,
+    ${myboxFooter('/mybox/privacy')}`,
 });
 
 export const myboxTermsPage = page({
@@ -411,7 +420,7 @@ export const myboxTermsPage = page({
         </p>
       </section>
     </main>
-    ${myboxFooter}`,
+    ${myboxFooter('/mybox/terms')}`,
 });
 
 export const myboxContactPage = page({
@@ -425,7 +434,7 @@ export const myboxContactPage = page({
       </p>
 
     </main>
-    ${myboxFooter}`,
+    ${myboxFooter('/mybox/contact')}`,
 });
 
 export default landingPage;
