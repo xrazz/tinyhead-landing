@@ -97,19 +97,11 @@ const styles = `
   }
 
   .app-icon {
-    display: grid;
     flex: 0 0 auto;
     width: 42px;
     height: 42px;
-    place-items: center;
-    border-radius: 9px;
-    background: #34c759;
-    color: #ffffff;
-  }
-
-  .app-icon svg {
-    width: 23px;
-    height: 23px;
+    border-radius: 10px;
+    object-fit: cover;
   }
 
   .app-card strong {
@@ -171,11 +163,7 @@ export const landingPage = page({
       </p>
 
       <a class="app-card" href="/mybox">
-        <span class="app-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-          </svg>
-        </span>
+        <img class="app-icon" src="/assets/mybox-logo.webp" alt="" width="42" height="42" />
         <span class="app-copy">
           <strong>Mybox</strong>
           <span>A private place for notes, logs, and small records that stay on your device.</span>
