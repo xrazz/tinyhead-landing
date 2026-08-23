@@ -275,7 +275,7 @@ export const myboxPrivacyPage = page({
       <section>
         <h2>Contact</h2>
         <p>
-          For privacy questions about Mybox, contact <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
+          For privacy questions about Mybox, contact <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
         </p>
       </section>
     </main>
@@ -368,7 +368,7 @@ export const myboxTermsPage = page({
       <section>
         <h2>9. Contact</h2>
         <p>
-          For questions about these terms, contact <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
+          For questions about these terms, contact <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
         </p>
       </section>
     </main>
@@ -384,7 +384,7 @@ export const myboxContactPage = page({
       <h1>Mybox Contact</h1>
       <p>
         For support, privacy questions, terms questions, or App Store review
-        contact needs, email <a href="mailto:raj@keepdb.dev">raj@keepdb.dev</a>.
+        contact needs, email <a href="mailto:raj@tinyhead.space">raj@tinyhead.space</a>.
       </p>
 
       <nav aria-label="Mybox pages">
