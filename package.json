@@ -11,9 +11,14 @@
     "start": "node serve-landing.js"
   },
   "repository": "https://github.com/xrazz",
-  "keywords": ["landing-page", "personal-site", "side-projects"],
+  "keywords": [
+    "landing-page",
+    "personal-site",
+    "side-projects"
+  ],
   "dependencies": {
-    "fastify": "^5.8.5"
+    "fastify": "^5.8.5",
+    "postgres": "^3.4.9"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
