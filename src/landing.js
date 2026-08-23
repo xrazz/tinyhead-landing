@@ -89,9 +89,9 @@ const styles = `
     gap: 14px;
     margin-top: 24px;
     padding: 18px;
-    border: 1px solid #e4e4e7;
+    border: 1px dotted #a1a1aa;
     border-radius: 6px;
-    background: #fafafa;
+    background: transparent;
     color: inherit;
     text-decoration: none;
   }
@@ -112,43 +112,10 @@ const styles = `
     height: 23px;
   }
 
-  .news-list {
-    display: grid;
-    gap: 18px;
-    margin-top: 24px;
-  }
-
-  .news-item {
-    padding-bottom: 18px;
-    border-bottom: 1px solid #f4f4f5;
-  }
-
-  .news-item:last-child { border-bottom: 0; }
-
-  .news-title {
-    color: #18181b;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  .news-summary {
-    margin-top: 6px;
-  }
-
   .app-card strong {
     display: block;
     color: #18181b;
     font-size: 15px;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  .app-card small {
-    display: block;
-    margin-top: 2px;
-    color: #71717a;
-    font-size: 13px;
     font-weight: 500;
     line-height: 1.5;
   }
@@ -211,20 +178,9 @@ export const landingPage = page({
         </span>
         <span class="app-copy">
           <strong>Mybox</strong>
-          <small>Local iOS app</small>
           <span>A private place for notes, logs, and small records that stay on your device.</span>
         </span>
       </a>
-
-      <section>
-        <h2>News</h2>
-        <p>
-          Daily Hacker News picks collected by the agent.
-        </p>
-        <div class="links">
-          <a href="/news/latest">Latest news</a>
-        </div>
-      </section>
     </main>
     <footer>
       Tinyhead
@@ -443,66 +399,5 @@ export const myboxTermsPage = page({
       <a href="/mybox">Back to Mybox</a>
     </footer>`,
 });
-
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function formatDate(value) {
-  if (!value) return '';
-  return new Intl.DateTimeFormat('en', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-    timeZone: 'UTC',
-  }).format(new Date(value));
-}
-
-function storyLink(story) {
-  return story.article_url || story.hn_url;
-}
-
-export function newsPage({ stories, title = 'Latest Hacker News - Tinyhead' }) {
-  const generatedAt = stories[0]?.generated_at;
-  const storyMarkup = stories.length
-    ? stories.map((story) => `<article class="news-item">
-          <a class="news-title" href="${escapeHtml(storyLink(story))}" rel="noopener noreferrer">${escapeHtml(story.rank)}. ${escapeHtml(story.headline)}</a>
-          ${story.summary ? `<p class="news-summary">${escapeHtml(story.summary)}</p>` : ''}
-          <p class="meta">
-            ${story.points === null || story.points === undefined ? '' : `${escapeHtml(story.points)} points · `}
-            <a href="${escapeHtml(story.hn_url)}" rel="noopener noreferrer">HN discussion</a>
-            ${story.source ? ` · ${escapeHtml(story.source)}` : ''}
-          </p>
-        </article>`).join('')
-    : `<p>No stories have been stored yet.</p>`;
-
-  return page({
-    title,
-    description: 'Latest Hacker News stories collected for Tinyhead.',
-    body: `<main>
-        <h1>${escapeHtml(title)}</h1>
-        ${generatedAt ? `<p class="meta">Generated ${escapeHtml(formatDate(generatedAt))} UTC</p>` : ''}
-
-        <nav aria-label="News navigation">
-          <a href="/">Tinyhead</a>
-          <a href="/news/latest">Latest</a>
-        </nav>
-
-        <section>
-          <h2>Stories</h2>
-          <div class="news-list">
-            ${storyMarkup}
-          </div>
-        </section>
-      </main>
-      <footer>
-        Tinyhead News
-      </footer>`,
-  });
-}
 
 export default landingPage;
