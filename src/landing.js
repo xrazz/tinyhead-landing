@@ -133,6 +133,93 @@ const styles = `
     font-size: 13px;
   }
 
+  .hero {
+    margin-top: 18px;
+    padding: 8px 0 0;
+  }
+
+  .hero-subtitle {
+    margin-top: 14px;
+    color: #3f3f46;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .hero-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 1px 2px rgba(24, 24, 27, 0.05);
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  .primary-link,
+  .secondary-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .primary-link {
+    background: #18181b;
+    color: #ffffff;
+  }
+
+  .secondary-link {
+    border: 1px solid #d4d4d8;
+    color: #18181b;
+    background: #ffffff;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .feature-card {
+    padding: 18px;
+    border: 1px solid #e4e4e7;
+    border-radius: 16px;
+    background: #fafafa;
+  }
+
+  .feature-card h3 {
+    margin: 0 0 8px;
+    color: #18181b;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
   @media (max-width: 520px) {
     main,
     footer {
@@ -181,7 +268,7 @@ function myboxFooter(currentPath) {
 const tinyheadFooter = `<footer>
       <nav aria-label="Tinyhead pages">
         <a href="/">Home</a>
-        <a href="/mybox">Project</a>
+        <a href="/projects">Projects</a>
         <a href="/contact">Contact</a>
       </nav>
     </footer>`;
@@ -220,29 +307,79 @@ export const contactPage = page({
     <footer>
       <nav aria-label="Tinyhead pages">
         <a href="/">Home</a>
-        <a href="/mybox">Project</a>
+        <a href="/projects">Projects</a>
       </nav>
     </footer>`,
 });
 
-export const myboxPage = page({
-  title: 'Mybox - Tinyhead',
-  description: 'Mybox is a local-first iOS app for personal notes, logs, and small records.',
+export const projectsPage = page({
+  title: 'Projects - Tinyhead',
+  description: 'A directory of Tinyhead projects and apps.',
   body: `<main>
-      <h1>Mybox</h1>
+      <h1>Projects</h1>
       <p>
-        Mybox is a small local-first iOS app for keeping personal boxes of notes,
-        logs, and small records. It is built to keep your data on your device.
+        A small collection of apps and experiments built by Tinyhead.
       </p>
 
+      <a class="app-card" href="/mybox">
+        <img class="app-icon" src="/assets/mybox-logo.webp" alt="" width="42" height="42" />
+        <span class="app-copy">
+          <strong>Mybox</strong>
+          <span>A private place for notes, logs, and small records that stay on your device.</span>
+        </span>
+      </a>
+    </main>
+    ${tinyheadFooter}`,
+});
+
+export const myboxPage = page({
+  title: 'Mybox - Tinyhead',
+  description: 'Mybox is a private inbox for saving links, text, images, and personal items locally.',
+  body: `<main>
+      <div class="hero">
+        <div class="hero-brand">
+          <img class="hero-logo" src="/assets/mybox-logo.webp" alt="Mybox logo" width="52" height="52" />
+          <h1>Mybox</h1>
+        </div>
+         
+
+        <div class="cta-row">
+          <a class="primary-link" href="mailto:raj@tinyhead.space">Contact support</a>
+          <a class="secondary-link" href="/mybox/privacy">Privacy policy</a>
+        </div>
+      </div>
+
       <section>
-        <h2>Local by default</h2>
+        <h2>Like sending to yourself on WhatsApp</h2>
         <p>
-          Mybox does not run an account system and does not store your app content
-          on a Tinyhead server. Your boxes and entries live locally on your device.
+          A quick place to save links, images, and text for later, without a server or a public feed.
         </p>
       </section>
 
+      <section>
+        <h2>Built for quick saves</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>Links</h3>
+            <p>Save articles, references, and pages you want to keep.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Images</h3>
+            <p>Store screenshots and photos in one private place.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Text</h3>
+            <p>Keep notes, snippets, and ideas without an account.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Offline and private</h2>
+        <p>
+          Mybox stays local-first. Nothing is pushed to a server. It is simple, private, and only for you.
+        </p>
+      </section>
     </main>
     ${myboxFooter('/mybox')}`,
 });

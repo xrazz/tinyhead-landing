@@ -6,6 +6,7 @@ import landingPage, {
   myboxPage,
   myboxPrivacyPage,
   myboxTermsPage,
+  projectsPage,
 } from './src/landing.js';
 
 const fastify = Fastify({ logger: false });
@@ -22,6 +23,14 @@ fastify.get('/contact', async (_request, reply) => {
 
 fastify.get('/contact/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(contactPage);
+});
+
+fastify.get('/projects', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(projectsPage);
+});
+
+fastify.get('/projects/', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(projectsPage);
 });
 
 fastify.get('/assets/mybox-logo.webp', async (_request, reply) => {
