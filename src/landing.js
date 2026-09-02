@@ -13,6 +13,7 @@ const styles = `
     flex-direction: column;
     margin: 0;
     min-height: 100vh;
+    padding-bottom: 98px;
   }
 
   main,
@@ -27,14 +28,25 @@ const styles = `
   }
 
   footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    margin-inline: 0;
     padding-block: 28px 48px;
     border-top: 1px solid #f4f4f5;
+    background: rgba(255, 255, 255, 0.94);
     color: #71717a;
     font-size: 13px;
     font-weight: 500;
   }
 
-  footer nav { margin-top: 0; }
+  footer nav {
+    width: min(calc(100% - 40px), 620px);
+    margin: 0 auto;
+  }
 
   h1 {
     margin: 0;
@@ -92,6 +104,11 @@ const styles = `
 
   .home-main {
     padding-top: 30px;
+  }
+
+  .home-main .app-card {
+    border: 0;
+    padding-inline: 0;
   }
 
   .site-logo {
@@ -259,6 +276,14 @@ const styles = `
   @media (max-width: 520px) {
     main,
     footer {
+      width: min(calc(100% - 32px), 620px);
+    }
+
+    footer {
+      width: 100%;
+    }
+
+    footer nav {
       width: min(calc(100% - 32px), 620px);
     }
 
