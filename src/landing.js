@@ -106,11 +106,6 @@ const styles = `
     padding-top: 30px;
   }
 
-  .home-main .app-card {
-    border: 0;
-    padding-inline: 0;
-  }
-
   .site-logo {
     display: block;
     width: 76px;
@@ -158,9 +153,9 @@ const styles = `
 
   .app-icon {
     flex: 0 0 auto;
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 0;
     object-fit: cover;
   }
 
@@ -346,13 +341,6 @@ export const landingPage = page({
         small details that need a stable home.
       </p>
 
-      <a class="app-card" href="/mybox">
-        <img class="app-icon" src="/assets/mybox-logo.webp" alt="" width="42" height="42" />
-        <span class="app-copy">
-          <strong>Mybox</strong>
-          <span>A private place for notes, logs, and small records that stay on your device.</span>
-        </span>
-      </a>
     </main>
     ${tinyheadFooter}
     <script>
