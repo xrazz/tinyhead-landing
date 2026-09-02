@@ -90,6 +90,42 @@ const styles = `
 
   section { margin-top: 44px; }
 
+  .home-main {
+    padding-top: 30px;
+  }
+
+  .site-logo {
+    display: block;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 44px;
+    object-fit: contain;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .cursor-badge {
+    position: fixed;
+    z-index: 10;
+    left: var(--cursor-x, 0);
+    top: var(--cursor-y, 0);
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #18181b;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(12px, 12px);
+    transition: opacity 120ms ease;
+  }
+
+  .cursor-badge.is-visible {
+    opacity: 1;
+  }
+
   .app-card {
     display: flex;
     align-items: center;
@@ -276,7 +312,9 @@ const tinyheadFooter = `<footer>
 export const landingPage = page({
   title: 'Tinyhead - App pages',
   description: 'Tinyhead hosts simple pages for small apps and side projects.',
-  body: `<main>
+  body: `<main class="home-main">
+      <img class="site-logo" src="/assets/tinyhead-logo.webp" alt="Tinyhead logo" width="76" height="76" data-cursor-badge-target />
+      <span class="cursor-badge" data-cursor-badge>Tinyhead</span>
       <h1>Tiny personal project desk.</h1>
       <p>
         A quiet place for app landing pages, privacy policies, terms, and the
@@ -291,7 +329,21 @@ export const landingPage = page({
         </span>
       </a>
     </main>
-    ${tinyheadFooter}`,
+    ${tinyheadFooter}
+    <script>
+      const logo = document.querySelector('[data-cursor-badge-target]');
+      const badge = document.querySelector('[data-cursor-badge]');
+
+      logo?.addEventListener('pointermove', (event) => {
+        document.documentElement.style.setProperty('--cursor-x', event.clientX + 'px');
+        document.documentElement.style.setProperty('--cursor-y', event.clientY + 'px');
+        badge?.classList.add('is-visible');
+      });
+
+      logo?.addEventListener('pointerleave', () => {
+        badge?.classList.remove('is-visible');
+      });
+    </script>`,
 });
 
 export const contactPage = page({

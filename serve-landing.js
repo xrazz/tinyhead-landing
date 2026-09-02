@@ -12,6 +12,7 @@ import landingPage, {
 const fastify = Fastify({ logger: false });
 const port = Number(process.env.PORT || 3000);
 const myboxLogoPath = new URL('./public/assets/mybox-logo.webp', import.meta.url);
+const tinyheadLogoPath = new URL('./public/assets/tinyhead-logo.webp', import.meta.url);
 
 fastify.get('/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(landingPage);
@@ -38,6 +39,13 @@ fastify.get('/assets/mybox-logo.webp', async (_request, reply) => {
     .header('Cache-Control', 'public, max-age=31536000, immutable')
     .type('image/webp')
     .send(createReadStream(myboxLogoPath));
+});
+
+fastify.get('/assets/tinyhead-logo.webp', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/webp')
+    .send(createReadStream(tinyheadLogoPath));
 });
 
 fastify.get('/mybox', async (_request, reply) => {
