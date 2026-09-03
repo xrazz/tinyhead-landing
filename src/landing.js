@@ -104,6 +104,11 @@ const styles = `
 
   .home-main {
     padding-top: 30px;
+    text-align: center;
+  }
+
+  .home-main p {
+    margin-inline: auto;
   }
 
   .site-logo {
