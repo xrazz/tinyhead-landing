@@ -331,6 +331,7 @@ const tinyheadFooter = `<footer>
         <a href="/">Home</a>
         <a href="/projects">Projects</a>
         <a href="/contact">Contact</a>
+        <a href="https://github.com/xrazz" rel="noopener noreferrer">GitHub</a>
       </nav>
     </footer>`;
 
@@ -378,6 +379,7 @@ export const contactPage = page({
       <nav aria-label="Tinyhead pages">
         <a href="/">Home</a>
         <a href="/projects">Projects</a>
+        <a href="https://github.com/xrazz" rel="noopener noreferrer">GitHub</a>
       </nav>
     </footer>`,
 });
