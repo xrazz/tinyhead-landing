@@ -13,6 +13,7 @@ const fastify = Fastify({ logger: false });
 const port = Number(process.env.PORT || 3000);
 const myboxLogoPath = new URL('./public/assets/mybox-logo.webp', import.meta.url);
 const tinyheadLogoPath = new URL('./public/assets/tinyhead-logo.webp', import.meta.url);
+const appleLogoWhitePath = new URL('./public/assets/apple-logo-white.png', import.meta.url);
 const myboxWhatsAppPath = new URL('./public/assets/mybox-whatsapp.png', import.meta.url);
 const myboxOfflinePath = new URL('./public/assets/mybox-offline.png', import.meta.url);
 const myboxSecurePath = new URL('./public/assets/mybox-secure.png', import.meta.url);
@@ -50,6 +51,13 @@ fastify.get('/assets/tinyhead-logo.webp', async (_request, reply) => {
     .header('Cache-Control', 'public, max-age=31536000, immutable')
     .type('image/webp')
     .send(createReadStream(tinyheadLogoPath));
+});
+
+fastify.get('/assets/apple-logo-white.png', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/png')
+    .send(createReadStream(appleLogoWhitePath));
 });
 
 fastify.get('/assets/mybox-whatsapp.png', async (_request, reply) => {

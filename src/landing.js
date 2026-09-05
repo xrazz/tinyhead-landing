@@ -300,9 +300,11 @@ const styles = `
   }
 
   .download-link-logo {
-    font-size: 1.1em;
-    line-height: 1;
-    transform: translateY(-0.02em);
+    display: block;
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+    transform: translateY(-1px);
   }
 
   .contact-link {
@@ -426,18 +428,29 @@ const styles = `
     main { padding-block: 56px 48px; }
 
     .hero {
-      min-height: 66vh;
-      gap: 30px;
+      min-height: 58vh;
+      gap: 24px;
+    }
+
+    .mybox-title {
+      gap: 7px;
+      padding-inline: 14px;
+    }
+
+    .mybox-title-line {
+      flex-wrap: nowrap;
+      gap: 8px;
     }
 
     .mybox-title-word,
     .mybox-title-soft,
     .mybox-pill {
-      font-size: clamp(38px, 13.8vw, 58px);
+      font-size: clamp(30px, 9.2vw, 40px);
     }
 
     .mybox-pill {
       gap: 6px;
+      padding: 0.13em 0.3em 0.17em 0.22em;
     }
 
     .download-link {
@@ -594,7 +607,7 @@ export const myboxPage = page({
 
         <div class="cta-row">
           <a class="download-link" href="https://apps.apple.com/app/id6806543053" rel="noopener noreferrer">
-            <span class="download-link-logo" aria-hidden="true"></span>
+            <img class="download-link-logo" src="/assets/apple-logo-white.png" alt="" width="256" height="256" />
             <span>App Store</span>
           </a>
           <a class="contact-link" href="mailto:raj@tinyhead.space">Contact support</a>
