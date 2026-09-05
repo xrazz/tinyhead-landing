@@ -13,6 +13,10 @@ const fastify = Fastify({ logger: false });
 const port = Number(process.env.PORT || 3000);
 const myboxLogoPath = new URL('./public/assets/mybox-logo.webp', import.meta.url);
 const tinyheadLogoPath = new URL('./public/assets/tinyhead-logo.webp', import.meta.url);
+const myboxWhatsAppPath = new URL('./public/assets/mybox-whatsapp.png', import.meta.url);
+const myboxOfflinePath = new URL('./public/assets/mybox-offline.png', import.meta.url);
+const myboxSecurePath = new URL('./public/assets/mybox-secure.png', import.meta.url);
+const myboxMainScreenshotPath = new URL('./public/assets/mybox-main-screenshot.png', import.meta.url);
 
 fastify.get('/', async (_request, reply) => {
   return reply.type('text/html; charset=utf-8').send(landingPage);
@@ -46,6 +50,34 @@ fastify.get('/assets/tinyhead-logo.webp', async (_request, reply) => {
     .header('Cache-Control', 'public, max-age=31536000, immutable')
     .type('image/webp')
     .send(createReadStream(tinyheadLogoPath));
+});
+
+fastify.get('/assets/mybox-whatsapp.png', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/png')
+    .send(createReadStream(myboxWhatsAppPath));
+});
+
+fastify.get('/assets/mybox-offline.png', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/png')
+    .send(createReadStream(myboxOfflinePath));
+});
+
+fastify.get('/assets/mybox-secure.png', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/png')
+    .send(createReadStream(myboxSecurePath));
+});
+
+fastify.get('/assets/mybox-main-screenshot.png', async (_request, reply) => {
+  return reply
+    .header('Cache-Control', 'public, max-age=31536000, immutable')
+    .type('image/png')
+    .send(createReadStream(myboxMainScreenshotPath));
 });
 
 fastify.get('/mybox', async (_request, reply) => {

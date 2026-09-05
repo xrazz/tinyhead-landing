@@ -48,6 +48,16 @@ const styles = `
     margin: 0 auto;
   }
 
+  body:has(.mybox-page) {
+    padding-bottom: 0;
+  }
+
+  .mybox-page + footer {
+    position: static;
+    margin-top: 28px;
+    padding-block: 28px 48px;
+  }
+
   h1 {
     margin: 0;
     font-size: 24px;
@@ -187,39 +197,140 @@ const styles = `
   }
 
   .hero {
-    margin-top: 18px;
-    padding: 8px 0 0;
+    min-height: 58vh;
+    display: grid;
+    align-content: center;
+    gap: 34px;
+    margin-top: 0;
+    padding: 18px 0 0;
   }
 
-  .hero-subtitle {
-    margin-top: 14px;
-    color: #3f3f46;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.6;
+  .mybox-title {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 20px;
+    text-align: center;
   }
 
-  .hero-brand {
+  .mybox-title-line {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
   }
 
-  .hero-logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    object-fit: cover;
-    border: 1px solid #e4e4e7;
-    box-shadow: 0 1px 2px rgba(24, 24, 27, 0.05);
+  .mybox-title-word,
+  .mybox-title-soft,
+  .mybox-pill {
+    color: #050505;
+    font-size: clamp(44px, 6vw, 68px);
+    font-weight: 750;
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+
+  .mybox-title-soft {
+    color: rgba(5, 5, 5, 0.34);
+  }
+
+  .mybox-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 1.28em;
+    padding: 0.13em 0.34em 0.17em 0.24em;
+    border: 1px solid color-mix(in srgb, var(--pill-color) 18%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--pill-color) 10%, white);
+    color: var(--pill-color);
+  }
+
+  .mybox-pill img {
+    width: 0.86em;
+    height: 0.86em;
+    object-fit: contain;
+    flex: 0 0 auto;
+    transform: translateY(0.01em);
   }
 
   .cta-row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
-    margin-top: 26px;
+    margin-top: 0;
+  }
+
+  .download-link {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 1.28em;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #3a3a3c 0%, #202022 44%, #050505 100%);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+  }
+
+  .download-link::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: linear-gradient(105deg, transparent 36%, rgba(255, 255, 255, 0.26) 48%, transparent 60%);
+    transform: translateX(-72%);
+    animation: download-shimmer 2.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .download-link span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .download-link-logo {
+    font-size: 1.1em;
+    line-height: 1;
+    transform: translateY(-0.02em);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 12px 18px;
+    border: 1px solid #d4d4d8;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #18181b;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+  }
+
+  @keyframes download-shimmer {
+    0%,
+    58% {
+      transform: translateX(-72%);
+    }
+
+    100% {
+      transform: translateX(72%);
+    }
   }
 
   .primary-link,
@@ -254,10 +365,24 @@ const styles = `
   }
 
   .feature-card {
-    padding: 18px;
+    overflow: hidden;
+    padding: 0;
     border: 1px solid #e4e4e7;
     border-radius: 16px;
     background: #fafafa;
+  }
+
+  .feature-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 11 / 15;
+    object-fit: cover;
+    object-position: top center;
+    border-bottom: 1px solid #e4e4e7;
+  }
+
+  .feature-copy {
+    padding: 18px;
   }
 
   .feature-card h3 {
@@ -271,6 +396,17 @@ const styles = `
     margin: 0;
     font-size: 14px;
     line-height: 1.55;
+  }
+
+  .screenshot-showcase {
+    margin: 42px 0 0;
+  }
+
+  .screenshot-showcase img {
+    display: block;
+    width: min(100%, 360px);
+    height: auto;
+    margin-inline: auto;
   }
 
   @media (max-width: 520px) {
@@ -288,6 +424,25 @@ const styles = `
     }
 
     main { padding-block: 56px 48px; }
+
+    .hero {
+      min-height: 66vh;
+      gap: 30px;
+    }
+
+    .mybox-title-word,
+    .mybox-title-soft,
+    .mybox-pill {
+      font-size: clamp(38px, 13.8vw, 58px);
+    }
+
+    .mybox-pill {
+      gap: 6px;
+    }
+
+    .download-link {
+      gap: 9px;
+    }
   }
 `;
 
@@ -405,51 +560,58 @@ export const projectsPage = page({
 });
 
 export const myboxPage = page({
-  title: 'Mybox - Tinyhead',
-  description: 'Mybox is a private inbox for saving links, text, images, and personal items locally.',
-  body: `<main>
+  title: 'Mybox - Message Yourself Offline',
+  description: 'Mybox is an offline message yourself app for saving links, notes, images, videos, and private reminders locally on your iPhone without a server.',
+  body: `<main class="mybox-page">
       <div class="hero">
-        <div class="hero-brand">
-          <img class="hero-logo" src="/assets/mybox-logo.webp" alt="Mybox logo" width="52" height="52" />
-          <h1>Mybox</h1>
-        </div>
-         
+        <h1 class="mybox-title" aria-label="Message yourself like WhatsApp but fully offline and secure">
+          <span class="mybox-title-line">
+            <span class="mybox-title-word">Message</span>
+            <span class="mybox-title-word">yourself</span>
+          </span>
+          <span class="mybox-title-line">
+            <span class="mybox-title-soft">like</span>
+            <span class="mybox-pill" style="--pill-color: #14a855;">
+              <img src="/assets/mybox-whatsapp.png" alt="" width="64" height="64" />
+              <span>WhatsApp</span>
+            </span>
+          </span>
+          <span class="mybox-title-line">
+            <span class="mybox-title-word">but fully</span>
+            <span class="mybox-pill" style="--pill-color: #0a84ff;">
+              <img src="/assets/mybox-offline.png" alt="" width="64" height="64" />
+              <span>offline</span>
+            </span>
+          </span>
+          <span class="mybox-title-line">
+            <span class="mybox-title-soft">and</span>
+            <span class="mybox-pill" style="--pill-color: #7b5cf0;">
+              <img src="/assets/mybox-secure.png" alt="" width="64" height="64" />
+              <span>secure</span>
+            </span>
+          </span>
+        </h1>
 
         <div class="cta-row">
-          <a class="primary-link" href="mailto:raj@tinyhead.space">Contact support</a>
-          <a class="secondary-link" href="/mybox/privacy">Privacy policy</a>
+          <a class="download-link" href="https://apps.apple.com/app/id6806543053" rel="noopener noreferrer">
+            <span class="download-link-logo" aria-hidden="true"></span>
+            <span>App Store</span>
+          </a>
+          <a class="contact-link" href="mailto:raj@tinyhead.space">Contact support</a>
         </div>
       </div>
 
       <section>
-        <h2>Like sending to yourself on WhatsApp</h2>
-        <p>
-          A quick place to save links, images, and text for later, without a server or a public feed.
-        </p>
+        <figure class="screenshot-showcase">
+          <img src="/assets/mybox-main-screenshot.png" alt="Mybox app screen showing offline private messages, saved links, files, photos, and notes" width="1800" height="3680" />
+        </figure>
       </section>
 
       <section>
-        <h2>Built for quick saves</h2>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>Links</h3>
-            <p>Save articles, references, and pages you want to keep.</p>
-          </div>
-          <div class="feature-card">
-            <h3>Images</h3>
-            <p>Store screenshots and photos in one private place.</p>
-          </div>
-          <div class="feature-card">
-            <h3>Text</h3>
-            <p>Keep notes, snippets, and ideas without an account.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Offline and private</h2>
+        <h2>Offline, searchable, and private</h2>
         <p>
-          Mybox stays local-first. Nothing is pushed to a server. It is simple, private, and only for you.
+          Create separate MyBoxes for your links, images, videos, thoughts, or daily notes.
+          Search what you saved, lock what matters, and keep your personal content local-first.
         </p>
       </section>
     </main>
@@ -461,7 +623,7 @@ export const myboxPrivacyPage = page({
   description: 'Privacy policy for Mybox, a local-first iOS app.',
   body: `<main>
       <h1>Mybox Privacy Policy</h1>
-      <p class="meta">Last updated: August 24, 2026</p>
+      <p class="meta">Last updated: September 5, 2026</p>
 
       <section>
         <h2>Overview</h2>
@@ -474,9 +636,10 @@ export const myboxPrivacyPage = page({
       <section>
         <h2>Data stored locally</h2>
         <p>
-          Mybox may store your boxes, notes, logs, settings, and related app data
-          locally on your device. This data remains under your control through the
-          app and iOS device storage.
+          Mybox stores your inboxes, notes, links, images, videos, audio notes,
+          files, settings, and related app data locally on your device. This app
+          content remains under your control through the app and iOS device
+          storage.
         </p>
       </section>
 
@@ -492,11 +655,18 @@ export const myboxPrivacyPage = page({
       <section>
         <h2>Logs and diagnostics</h2>
         <p>
-          Mybox may generate local app logs needed for troubleshooting or normal app
-          operation. If Apple provides crash reports or diagnostic information
-          through your iOS or App Store settings, those reports may be used to fix
-          bugs and improve reliability. These diagnostics are not used for
-          advertising.
+          Mybox may send minimal operational logs to help troubleshoot errors,
+          understand whether core features work, and improve reliability. These
+          logs may include the event name, timestamp, app version, country or
+          region, and a random app-generated install identifier. They do not
+          include the content you save in Mybox, your contacts, your photos,
+          your messages, your email address, or your phone number. These logs are
+          not used for advertising or tracking.
+        </p>
+        <p>
+          If Apple provides crash reports or diagnostic information through your
+          iOS or App Store settings, those reports may also be used to fix bugs
+          and improve reliability.
         </p>
       </section>
 
@@ -513,9 +683,10 @@ export const myboxPrivacyPage = page({
         <h2>Third parties</h2>
         <p>
           Mybox does not sell personal data and does not use third-party advertising
-          trackers. If the app is downloaded through the App Store, Apple may process
-          purchase, download, crash, or device information under Apple&apos;s own
-          policies.
+          trackers. Operational logs may be processed by Tinyhead&apos;s logging
+          provider only for app functionality, analytics, and diagnostics. If the
+          app is downloaded through the App Store, Apple may process purchase,
+          download, crash, or device information under Apple&apos;s own policies.
         </p>
       </section>
 
